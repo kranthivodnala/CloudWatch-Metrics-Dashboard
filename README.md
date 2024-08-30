@@ -24,46 +24,12 @@ Before setting up the CloudWatch Metrics Dashboard, ensure you have the followin
 
 ### Step 1: Install and Configure the CloudWatch Agent
 
-1. **Install CloudWatch Agent**: Install the CloudWatch Agent on your EC2 instances to collect detailed metrics (memory and disk usage).
-    - For Amazon Linux 2, use:
-      ```bash
-      sudo yum install amazon-cloudwatch-agent
-      ```
+1. **Install CloudWatch Agent**: Install the CloudWatch Agent on your EC2 instances to collect detailed metrics (memory and disk usage). [List of Commands](https://github.com/kranthivodnala/CloudWatch-Metrics-Dashboard/blob/main/List%20of%20commands.txt)
 
-2. **Configure the Agent**: Create a configuration file to specify which metrics to collect. Example configuration:
-    ```json
-    {
-      "metrics": {
-        "append_dimensions": {
-          "InstanceId": "${aws:InstanceId}"
-        },
-        "aggregation_dimensions": [["InstanceId"]],
-        "metrics_collected": {
-          "mem": {
-            "measurement": [
-              "mem_used_percent",
-              "mem_available_percent"
-            ],
-            "metrics_collection_interval": 60
-          },
-          "disk": {
-            "measurement": [
-              "disk_used_percent"
-            ],
-            "resources": [
-              "/"
-            ],
-            "metrics_collection_interval": 60
-          }
-        }
-      }
-    }
-    ```
+2. **Configure the Agent**: Create a configuration file to specify which metrics to collect. Example configuration: [config.json](https://github.com/kranthivodnala/CloudWatch-Metrics-Dashboard/blob/main/config.json)
 
-3. **Start the Agent**: Start the CloudWatch Agent to begin sending metrics to CloudWatch.
-    ```bash
-    sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a start
-    ```
+3. **Start the Agent**: Start the CloudWatch Agent to begin sending metrics to CloudWatch. [List of Commands](https://github.com/kranthivodnala/CloudWatch-Metrics-Dashboard/blob/main/List%20of%20commands.txt)
+
 
 ### Step 2: Create the CloudWatch Dashboard
 
